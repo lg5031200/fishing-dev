@@ -2,7 +2,7 @@ const headerLeftDrawer = {
   namespace: true,
   state() {
     return {
-      drawer: true,
+      drawer: false,
     };
   },
   mutations: {

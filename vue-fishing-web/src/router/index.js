@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from '../view/Home';
+import FishLib from '../view/FishLib';
 import AppLayout from '../layout/AppLayout';
 
 Vue.use(Router);
@@ -17,8 +17,8 @@ export const routes = [
       /** 百星一般员工前台首页 */
       {
         path: '',
-        name: 'Home',
-        component: Home,
+        name: 'FishLib',
+        component: FishLib,
         meta: {},
       },
     ],
