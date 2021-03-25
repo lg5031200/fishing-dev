@@ -19,10 +19,20 @@
       <v-divider class="mx-3 my-5"></v-divider>
     </v-navigation-drawer>
 
-    <v-sheet color="grey lighten-5" height="72" width="100%"></v-sheet>
+    <v-sheet
+      color="grey lighten-5"
+      height="72"
+      width="100%"
+      class="pt-5 text-h6"
+      ><span class="pl-14 ml-4">{{ currentDrawerItem.title }}</span></v-sheet
+    >
 
     <v-list class="pl-14" shaped>
-      <v-list-item v-for="children in children" :key="children.title" link>
+      <v-list-item
+        v-for="children in currentDrawerItem.children"
+        :key="children.title"
+        link
+      >
         <v-list-item-content>
           <v-list-item-title>{{ children.title }}</v-list-item-title>
         </v-list-item-content>
@@ -39,21 +49,16 @@ export default {
   data() {
     return {
       mainDrawer: true,
-      children: [],
+      currentDrawerItem: null,
     };
   },
   mounted() {
     this.expandItemList(drawers[0]);
   },
   methods: {
-    navigation(drawerItem) {
-      const { link } = drawerItem;
-      this.$router.push(link);
-    },
     ...mapActions(['TOGGLE_DRAWER']),
     expandItemList(drawerItem) {
-      const { children } = drawerItem;
-      this.children = children;
+      this.currentDrawerItem = drawerItem;
     },
   },
   computed: {

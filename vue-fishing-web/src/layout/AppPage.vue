@@ -13,7 +13,7 @@ export default {};
 <style lang="scss">
 #app-page {
   height: 100%;
-  background-color: #eceff1;
+  background-color: #fff;
   padding-top: 64px !important;
 }
 #page-layout {

@@ -1,12 +1,11 @@
 <template>
-  <v-app-bar app clipped-right flat height="72" dark class="grey darken-3">
+  <v-app-bar app clipped-right flat height="72" class="white">
     <div class="d-flex align-center ml-4">
       <v-img
         alt="fish Logo"
         class="shrink mr-4"
-        src="../assets/fish-logo.jpg"
-        width="40"
-        style="border-radius: 10px"
+        src="../assets/logo.png"
+        width="60"
       />
 
       <h1>Fish Lib</h1>
@@ -14,7 +13,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-responsive max-width="156" class="mr-4">
+    <v-responsive max-width="300" style="margin-right: 80px">
       <v-text-field
         flat
         dense
@@ -25,10 +24,12 @@
       ></v-text-field>
     </v-responsive>
 
+    <v-btn text outlined class="mr-4">關於我們</v-btn>
+
     <v-menu left bottom>
       <template v-slot:activator="{ on, attrs }">
         <v-avatar v-bind="attrs" v-on="on">
-          <v-icon dark size="36">
+          <v-icon size="36">
             mdi-account-circle
           </v-icon>
         </v-avatar>

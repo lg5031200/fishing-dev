@@ -1,6 +1,7 @@
 const drawers = [
   {
     icon: 'mdi-fish',
+    title: '大迷宮',
     children: [
       {
         title: '深海',
@@ -14,6 +15,7 @@ const drawers = [
   },
   {
     icon: 'mdi-store-24-hour',
+    title: '24小時小哥',
     children: [
       {
         title: '工具1',
@@ -27,6 +29,7 @@ const drawers = [
   },
   {
     icon: 'mdi-horse',
+    title: '奔跑吧孩紙',
     children: [
       {
         title: 'horse',
@@ -36,6 +39,7 @@ const drawers = [
   },
   {
     icon: 'mdi-home',
+    title: '到家惹',
     children: [
       {
         title: 'home',
