@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-app id="app">
+  <v-app id="app" dark>
     <router-view></router-view>
   </v-app>
 </template>
@@ -13,6 +13,7 @@ export default {
 <style lang="scss">
 #app {
   height: 100vh;
-  font-family: 'Noto Sans TC';
+  user-select: none;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 </style>

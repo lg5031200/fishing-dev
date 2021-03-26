@@ -1,14 +1,20 @@
 <template>
   <v-app-bar app clipped-right flat height="72" class="white">
+    <v-parallax
+      src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+    ></v-parallax>
+
     <div class="d-flex align-center ml-4">
       <v-img
         alt="fish Logo"
-        class="shrink mr-4"
+        class="shrink mr-4 animate__animated animate__bounceInRight animate__delay-0.5s"
         src="../assets/logo.png"
         width="60"
       />
 
-      <h1>Fish Lib</h1>
+      <h2 class="animate__animated animate__jackInTheBox animate__delay-1s">
+        魚 の 圖 鑑
+      </h2>
     </div>
 
     <v-spacer></v-spacer>
@@ -21,15 +27,22 @@
         hide-details
         solo-inverted
         prepend-icon="mdi-magnify"
+        label="Search"
       ></v-text-field>
     </v-responsive>
 
-    <v-btn text outlined class="mr-4">關於我們</v-btn>
+    <v-btn class="mr-4" color="primary" outlined>
+      關於我們
+    </v-btn>
 
-    <v-menu left bottom>
+    <v-btn class="mr-4" color="primary" outlined>
+      註冊
+    </v-btn>
+
+    <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-avatar v-bind="attrs" v-on="on">
-          <v-icon size="36">
+          <v-icon size="36" color="primary">
             mdi-account-circle
           </v-icon>
         </v-avatar>

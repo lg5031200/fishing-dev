@@ -28,6 +28,5 @@ export default {
 #app-layout {
   flex: 1;
   overflow: hidden;
-  font-family: 'Noto Sans TC', sans-serif;
 }
 </style>
