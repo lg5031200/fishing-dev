@@ -14,7 +14,7 @@ export default {};
 #app-page {
   height: 100%;
   background-color: #fff;
-  padding-top: 64px !important;
+  padding-top: 84px !important;
 }
 #page-layout {
   height: 100%;

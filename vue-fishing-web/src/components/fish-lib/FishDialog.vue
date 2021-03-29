@@ -20,10 +20,10 @@
 </template>
 <script>
 export default {
-  props: ['dialog'],
+  props: ["dialog"],
   methods: {
     closeDialog() {
-      this.$emit('close-dialog');
+      this.$emit("close-dialog");
     },
   },
 };

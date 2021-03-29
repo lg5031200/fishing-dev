@@ -1,9 +1,5 @@
 <template>
-  <v-app-bar app clipped-right flat height="72" class="white">
-    <v-parallax
-      src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-    ></v-parallax>
-
+  <v-app-bar app clipped-right flat height="84" class="white" id="app-bar">
     <div class="d-flex align-center ml-4">
       <v-img
         alt="fish Logo"
@@ -31,20 +27,14 @@
       ></v-text-field>
     </v-responsive>
 
-    <v-btn class="mr-4" color="primary" outlined>
-      關於我們
-    </v-btn>
+    <v-btn class="mr-4" color="primary" outlined> 關於我們 </v-btn>
 
-    <v-btn class="mr-4" color="primary" outlined>
-      註冊
-    </v-btn>
+    <v-btn class="mr-4" color="primary" outlined> 註冊 </v-btn>
 
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-avatar v-bind="attrs" v-on="on">
-          <v-icon size="36" color="primary">
-            mdi-account-circle
-          </v-icon>
+          <v-icon size="36" color="primary"> mdi-account-circle </v-icon>
         </v-avatar>
       </template>
 
@@ -66,13 +56,17 @@ export default {
     return {
       menuItems: [
         {
-          text: '個人資訊',
+          text: "個人資訊",
         },
         {
-          text: '登出',
+          text: "登出",
         },
       ],
     };
   },
 };
 </script>
+<style lang="scss">
+#app-bar {
+}
+</style>
