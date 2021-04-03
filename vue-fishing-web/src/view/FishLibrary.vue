@@ -1,7 +1,7 @@
 <template>
   <div id="fish-lib">
-    <fish-filter-bar />
-    <fish-cards class="mt-4"></fish-cards>
+    <fish-filter-bar @fish-filter-params="saveFilterParams" />
+    <fish-cards class="mt-4" :fishFilterParams="fishFilterParams"></fish-cards>
   </div>
 </template>
 <script>
@@ -14,9 +14,15 @@ export default {
     "fish-filter-bar": FishFilterBar,
   },
   data() {
-    return {};
+    return {
+      fishFilterParams: [],
+    };
   },
-  methods: {},
+  methods: {
+    saveFilterParams(params) {
+      this.fishFilterParams = params;
+    },
+  },
 };
 </script>
 <style lang="scss">

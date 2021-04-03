@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Query {
-    fishes: [Fish!]!
+    fishes(param: SearchFish): [Fish!]!
   }
   type Mutation {
     addFish(input: FishInput!): Fish!
@@ -12,16 +12,22 @@ const typeDefs = gql`
     id: ID!
     zh_name: String!
     en_name: String!
-    tags: [FishTag!]!
+    category: [FishTag!]!
     introduction: String!
     habitat: String!
     imageSrc: String!
   }
 
+  input SearchFish {
+    category: [FishTag!]
+    zh_name: String
+    en_name: String
+  }
+
   input FishInput {
     zh_name: String!
     en_name: String!
-    tags: [FishTag!]!
+    category: [FishTag!]!
     introduction: String!
     habitat: String
     imageSrc: String!

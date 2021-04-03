@@ -2,9 +2,25 @@ const { Fish } = require('../model/fish');
 
 const resolvers = {
   Query: {
-    fishes: async () => {
-      const result = await Fish.find({}).exec();
-      return result;
+    fishes: async (_, args) => {
+      const { param } = args;
+
+      if (param && Object.values(param).length !== 0) {
+        if (param.zh_name) {
+          param.zh_name = new RegExp(param.zh_name);
+        }
+        if (param.category) {
+          Object.assign(param, { category: { $in: param.category } });
+        }
+      }
+
+      try {
+        const response = await Fish.find(param).exec();
+
+        return response;
+      } catch (e) {
+        return e.message;
+      }
     },
   },
   Mutation: {
@@ -12,6 +28,7 @@ const resolvers = {
       const { input } = args;
       try {
         const response = await Fish.create(input);
+
         return response;
       } catch (e) {
         return e.message;

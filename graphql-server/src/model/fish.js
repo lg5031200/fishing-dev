@@ -6,7 +6,7 @@ const fishSchema = new Schema({
   en_name: String,
   introduction: String,
   habitat: String,
-  tags: [String],
+  category: [String],
   imageSrc: String,
 });
 

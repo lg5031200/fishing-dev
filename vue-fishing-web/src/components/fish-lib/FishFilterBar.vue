@@ -7,14 +7,17 @@
           dense
           multiple
           hide-details
+          item-text="name"
+          item-value="value"
           placeholder="水域"
           v-model="fishTags.water.selected"
           :items="fishTags.water.items"
           :menu-props="{ bottom: true, offsetY: true }"
+          @change="setFishFilterParams"
         >
           <template v-slot:selection="{ item, index }">
             <v-chip color="#2196F3" outlined small v-if="index <= 1">
-              <span>{{ item }}</span>
+              <span>{{ item.name }}</span>
             </v-chip>
             <span v-if="index > 1" class="grey--text caption">
               (+{{ fishTags.water.selected.length - 2 }} others)
@@ -27,10 +30,13 @@
           dense
           multiple
           hide-details
+          item-text="name"
+          item-value="value"
           placeholder="體型"
           v-model="fishTags.body.selected"
           :items="fishTags.body.items"
           :menu-props="{ bottom: true, offsetY: true }"
+          @change="setFishFilterParams"
         >
           <template v-slot:selection="{ item, index }">
             <v-chip
@@ -40,7 +46,7 @@
               small
               v-if="index <= 1"
             >
-              <span>{{ item }}</span>
+              <span>{{ item.name }}</span>
             </v-chip>
             <span v-if="index > 1" class="grey--text caption">
               (+{{ fishTags.body.selected.length - 2 }} others)
@@ -53,10 +59,13 @@
           dense
           multiple
           hide-details
+          item-text="name"
+          item-value="value"
           placeholder="獵食喜好"
           v-model="fishTags.food.selected"
           :items="fishTags.food.items"
           :menu-props="{ bottom: true, offsetY: true }"
+          @change="setFishFilterParams"
         >
           <template v-slot:selection="{ item, index }">
             <v-chip
@@ -66,7 +75,7 @@
               small
               v-if="index <= 1"
             >
-              <span>{{ item }}</span>
+              <span>{{ item.name }}</span>
             </v-chip>
             <span v-if="index > 1" class="grey--text caption">
               (+{{ fishTags.food.selected.length - 2 }} others)
@@ -74,65 +83,85 @@
           </template>
         </v-select>
       </div>
-      <v-btn icon @click="reset()" class="ml-4 primary--text">
+      <v-btn icon @click="resetFilters()" class="ml-4 primary--text">
         <v-icon size="24">mdi-restart</v-icon></v-btn
       >
     </div>
   </div>
 </template>
 <script>
-import gql from "graphql-tag";
-
 export default {
-  apollo: {
-    fishes: {
-      query: gql`
-        {
-          fishes {
-            id
-            zh_name
-            en_name
-            category
-            introduction
-            habitat
-            imageSrc
-          }
-        }
-      `,
-      result({ data, loading }) {
-        if (Object.values(data).length !== 0 && !loading) {
-          this.fishCards = data.fishes;
-        }
-      },
-    },
-  },
   data() {
     return {
-      fishCards: [],
       fishTags: {
         water: {
-          items: ["深海", "淡水"],
+          items: [
+            {
+              name: "深海",
+              value: "SEA_WATER",
+            },
+            {
+              name: "淡水",
+              value: "FRESH_WATER",
+            },
+          ],
           selected: [],
         },
         body: {
-          items: ["大型", "小型", "中型"],
+          items: [
+            {
+              name: "大型",
+              value: "BIG",
+            },
+            {
+              name: "中型",
+              value: "MEDIUM",
+            },
+            {
+              name: "小型",
+              value: "SMALL",
+            },
+          ],
           selected: [],
         },
         food: {
-          items: ["雜食性", "食肉性", "草食性"],
+          items: [
+            {
+              name: "雜食性",
+              value: "OMNIVORE",
+            },
+            {
+              name: "食肉性",
+              value: "MEAT",
+            },
+            {
+              name: "草食性",
+              value: "HERBIVOROUS",
+            },
+          ],
           selected: [],
         },
       },
+      selectedFishCategories: [],
     };
   },
   methods: {
-    reset() {
-      this.fishTags.food.selected = [];
-      this.fishTags.body.selected = [];
-      this.fishTags.water.selected = [];
+    emitFishFilterParams(params) {
+      this.$emit("fish-filter-params", params);
     },
-    source(imageNum) {
-      return require(`../../assets/${imageNum}.png`);
+    setFishFilterParams() {
+      this.selectedFishCategories = [
+        ...this.fishTags.water.selected,
+        ...this.fishTags.body.selected,
+        ...this.fishTags.food.selected,
+      ];
+      this.emitFishFilterParams(this.selectedFishCategories);
+    },
+    resetFilters() {
+      for (const filter of Object.values(this.fishTags)) {
+        filter.selected = [];
+      }
+      this.emitFishFilterParams([]);
     },
   },
 };

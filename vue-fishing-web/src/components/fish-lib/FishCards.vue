@@ -18,21 +18,30 @@
 import gql from "graphql-tag";
 
 export default {
+  props: ["fishFilterParams"],
   apollo: {
     fishes: {
       query: gql`
-        {
-          fishes {
+        query fishes($param: SearchFish) {
+          fishes(param: $param) {
             id
             zh_name
-            en_name
             category
-            introduction
-            habitat
             imageSrc
           }
         }
       `,
+      variables() {
+        const param = {};
+
+        if (this.fishFilterParams.length !== 0) {
+          Object.assign(param, { category: this.fishFilterParams });
+        }
+
+        return {
+          param,
+        };
+      },
       result({ data, loading }) {
         if (Object.values(data).length !== 0 && !loading) {
           this.fishCards = data.fishes;
