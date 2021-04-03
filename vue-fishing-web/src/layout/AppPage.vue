@@ -25,6 +25,7 @@ export default {};
   flex: 1;
   display: flex;
   overflow: scroll;
+  overflow-x: hidden;
   flex-direction: column;
 }
 </style>

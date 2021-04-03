@@ -1,6 +1,6 @@
 <template>
   <v-container fluid id="fish-cards">
-    <v-row dense>
+    <v-row dense no-gutters>
       <v-col
         v-for="(card, index) in fishCards"
         :key="index"
@@ -69,11 +69,9 @@ export default {
       transform: scale(1);
     }
   }
-
   .fish-img {
-    height: 260px;
-    width: 260px;
-    border-radius: 5%;
+    height: 240px;
+    width: 240px;
     animation: scale-up-center 0.5s;
     background-image: radial-gradient(
       ellipse,

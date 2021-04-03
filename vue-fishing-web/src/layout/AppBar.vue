@@ -8,7 +8,7 @@
         width="60"
       />
 
-      <h2 class="animate__animated animate__jackInTheBox animate__delay-1s">
+      <h2 class="animate__animated animate__bounceInRight animate__delay-0.5s">
         魚 の 圖 鑑
       </h2>
     </div>
@@ -29,7 +29,7 @@
 
     <v-btn class="mr-4" color="primary" outlined> 關於我們 </v-btn>
 
-    <v-btn class="mr-4" color="primary" outlined> 註冊 </v-btn>
+    <!-- <v-btn class="mr-4" color="primary" outlined> 註冊 </v-btn>
 
     <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
@@ -47,7 +47,7 @@
           <v-list-item-title>{{ menuItem.text }}</v-list-item-title>
         </v-list-item>
       </v-list>
-    </v-menu>
+    </v-menu> -->
   </v-app-bar>
 </template>
 <script>
