@@ -4,7 +4,7 @@
       <v-col
         v-for="(card, index) in fishCards"
         :key="index"
-        cols="4"
+        cols="3"
         class="pa-4"
       >
         <v-img contain :src="source(card.imageSrc)" class="align-end fish-img">
@@ -15,10 +15,10 @@
   </v-container>
 </template>
 <script>
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export default {
-  props: ["fishFilterParams"],
+  props: ['fishFilterParams'],
   apollo: {
     fishes: {
       query: gql`
@@ -45,6 +45,7 @@ export default {
       result({ data, loading }) {
         if (Object.values(data).length !== 0 && !loading) {
           this.fishCards = data.fishes;
+          // this.fishCards.push(...data.fishes);
         }
       },
     },
@@ -65,8 +66,8 @@ export default {
 #fish-cards {
   max-width: 960px;
   padding: 0;
-  .col-4 {
-    padding: 0 !important;
+  .col-3 {
+    padding: 4px !important;
   }
   @keyframes scale-up-center {
     0% {
@@ -82,16 +83,19 @@ export default {
     height: 240px;
     width: 240px;
     animation: scale-up-center 0.5s;
-    background-image: radial-gradient(
-      ellipse,
-      rgba(31, 124, 211, 0.1) 45%,
-      transparent 70%
-    );
+    // background-image: radial-gradient(
+    //   ellipse,
+    //   rgba(31, 124, 211, 0.1) 45%,
+    //   transparent 70%
+    // );
+    background: #f0f0f0;
+    border-radius: 5%;
   }
   .fish-title {
     display: flex;
     flex-direction: row-reverse;
     margin-right: 25px;
+    margin-bottom: 10px;
   }
 }
 </style>
