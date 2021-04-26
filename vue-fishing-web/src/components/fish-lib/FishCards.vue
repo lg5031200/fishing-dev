@@ -1,36 +1,35 @@
 <template>
-  <v-container fluid id="fish-cards">
-    <v-row dense no-gutters>
-      <v-col
-        v-for="(card, index) in fishCards"
-        :key="index"
-        cols="3"
-        class="pa-4"
-      >
-        <v-img contain :src="source(card.imageSrc)" class="align-end fish-img">
-          <div class="fish-title">{{ card.zh_name }}</div>
-        </v-img>
+  <v-container id="fish-cards">
+    <v-row dense justify="center">
+      <v-col v-for="(card, index) in fishCards" :key="index" cols="auto">
+        <v-hover v-slot="{ hover }" open-delay="200">
+          <v-card
+            class="fish-card"
+            :elevation="hover ? 5 : 0"
+            :class="{ 'on-hover': hover }"
+          >
+            <v-img
+              contain
+              :src="source(card.imageSrc)"
+              class="align-end fish-img"
+            >
+              <div class="fish-title">{{ card.zh_name }}</div>
+            </v-img>
+          </v-card>
+        </v-hover>
       </v-col>
     </v-row>
   </v-container>
 </template>
+
 <script>
-import gql from 'graphql-tag';
+import { FISHES } from '../../constants/query';
 
 export default {
   props: ['fishFilterParams'],
   apollo: {
     fishes: {
-      query: gql`
-        query fishes($param: SearchFish) {
-          fishes(param: $param) {
-            id
-            zh_name
-            category
-            imageSrc
-          }
-        }
-      `,
+      query: FISHES,
       variables() {
         const param = {};
 
@@ -45,7 +44,7 @@ export default {
       result({ data, loading }) {
         if (Object.values(data).length !== 0 && !loading) {
           this.fishCards = data.fishes;
-          // this.fishCards.push(...data.fishes);
+          this.fishCards.push(...data.fishes);
         }
       },
     },
@@ -66,6 +65,7 @@ export default {
 #fish-cards {
   max-width: 960px;
   padding: 0;
+  overflow: scroll;
   .col-3 {
     padding: 4px !important;
   }
@@ -79,23 +79,29 @@ export default {
       transform: scale(1);
     }
   }
-  .fish-img {
-    height: 240px;
-    width: 240px;
-    animation: scale-up-center 0.5s;
-    // background-image: radial-gradient(
-    //   ellipse,
-    //   rgba(31, 124, 211, 0.1) 45%,
-    //   transparent 70%
-    // );
-    background: #f0f0f0;
+  .fish-card {
+    margin: 2px;
     border-radius: 5%;
+    .fish-img {
+      height: 200px;
+      width: 200px;
+      animation: scale-up-center 0.5s;
+      background: #f0f0f0;
+    }
   }
   .fish-title {
     display: flex;
     flex-direction: row-reverse;
     margin-right: 25px;
     margin-bottom: 10px;
+  }
+  .v-card {
+    transition: opacity 0.5s ease-in-out;
+    cursor: pointer;
+  }
+
+  .v-card:not(.on-hover) {
+    opacity: 0.8;
   }
 }
 </style>

@@ -97,12 +97,12 @@ export default {
         water: {
           items: [
             {
-              name: "深海",
-              value: "SEA_WATER",
+              name: '深海',
+              value: 'SEA_WATER',
             },
             {
-              name: "淡水",
-              value: "FRESH_WATER",
+              name: '淡水',
+              value: 'FRESH_WATER',
             },
           ],
           selected: [],
@@ -110,16 +110,16 @@ export default {
         body: {
           items: [
             {
-              name: "大型",
-              value: "BIG",
+              name: '大型',
+              value: 'BIG',
             },
             {
-              name: "中型",
-              value: "MEDIUM",
+              name: '中型',
+              value: 'MEDIUM',
             },
             {
-              name: "小型",
-              value: "SMALL",
+              name: '小型',
+              value: 'SMALL',
             },
           ],
           selected: [],
@@ -127,16 +127,16 @@ export default {
         food: {
           items: [
             {
-              name: "雜食性",
-              value: "OMNIVORE",
+              name: '雜食性',
+              value: 'OMNIVORE',
             },
             {
-              name: "食肉性",
-              value: "MEAT",
+              name: '食肉性',
+              value: 'MEAT',
             },
             {
-              name: "草食性",
-              value: "HERBIVOROUS",
+              name: '草食性',
+              value: 'HERBIVOROUS',
             },
           ],
           selected: [],
@@ -147,7 +147,7 @@ export default {
   },
   methods: {
     emitFishFilterParams(params) {
-      this.$emit("fish-filter-params", params);
+      this.$emit('fish-filter-params', params);
     },
     setFishFilterParams() {
       this.selectedFishCategories = [
@@ -187,6 +187,9 @@ export default {
       display: flex;
       align-items: center;
       border-right: 1px solid #dbdbdb;
+      .v-select__selections input {
+        font-size: 14px;
+      }
       .v-input__slot:before {
         border: unset;
       }
