@@ -1,7 +1,9 @@
-import app from './app';
+// import app from './app';
+import fish from './fish';
 
 const modules = {
-  app,
+  // app,
+  fish,
 };
 
 export default modules;

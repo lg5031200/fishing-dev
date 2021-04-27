@@ -5,8 +5,11 @@ export const FISHES = gql`
     fishes(param: $param) {
       id
       zh_name
+      en_name
       category
+      habitat
       imageSrc
+      introduction
     }
   }
 `;

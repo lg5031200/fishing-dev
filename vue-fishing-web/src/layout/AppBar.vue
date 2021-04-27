@@ -22,16 +22,20 @@
         rounded
         hide-details
         solo-inverted
+        clearable
+        @click:clear="clearSearchTerm"
         prepend-icon="mdi-magnify"
         label="Search"
+        v-model="searchTerm"
+        @keydown.enter="searchFishByTerm"
       ></v-text-field>
     </v-responsive>
 
-    <v-btn class="mr-4" color="primary" outlined> 關於我們 </v-btn>
+    <v-btn class="mr-4" color="primary" text> 關於我們 </v-btn>
 
-    <!-- <v-btn class="mr-4" color="primary" outlined> 註冊 </v-btn>
+    <v-btn class="mr-4" color="primary" text> 註冊 </v-btn>
 
-    <v-menu offset-y>
+    <!-- <v-menu offset-y>
       <template v-slot:activator="{ on, attrs }">
         <v-avatar v-bind="attrs" v-on="on">
           <v-icon size="36" color="primary"> mdi-account-circle </v-icon>
@@ -51,18 +55,30 @@
   </v-app-bar>
 </template>
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   data() {
     return {
+      searchTerm: null,
       menuItems: [
         {
-          text: "個人資訊",
+          text: '個人資訊',
         },
         {
-          text: "登出",
+          text: '登出',
         },
       ],
     };
+  },
+  methods: {
+    ...mapActions(['SET_FISH_TERM']),
+    searchFishByTerm() {
+      this.SET_FISH_TERM(this.searchTerm);
+    },
+    clearSearchTerm() {
+      this.SET_FISH_TERM(null);
+    },
   },
 };
 </script>

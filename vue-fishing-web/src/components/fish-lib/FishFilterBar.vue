@@ -1,9 +1,9 @@
 <template>
   <div id="fish-filter">
     <div class="filter-box">
-      <h4 class="filter-title border-box mr-2">篩選器</h4>
-      <div class="border-box mr-4">
-        <v-select
+      <!-- <h4 class="filter-title border-box mr-2">篩選器</h4> -->
+      <div class="border-box mr-4" style="border-left: 1px solid #dbdbdb;">
+        <!-- <v-select
           dense
           multiple
           hide-details
@@ -23,10 +23,22 @@
               (+{{ fishTags.water.selected.length - 2 }} others)
             </span>
           </template>
+        </v-select> -->
+        <v-select
+          dense
+          hide-details
+          item-text="name"
+          item-value="value"
+          placeholder="水域"
+          v-model="fishTags.water.selected"
+          :items="fishTags.water.items"
+          :menu-props="{ bottom: true, offsetY: true }"
+          @change="setFishFilterParams"
+        >
         </v-select>
       </div>
       <div class="border-box mr-2">
-        <v-select
+        <!-- <v-select
           dense
           multiple
           hide-details
@@ -52,10 +64,22 @@
               (+{{ fishTags.body.selected.length - 2 }} others)
             </span>
           </template>
+        </v-select> -->
+        <v-select
+          dense
+          hide-details
+          item-text="name"
+          item-value="value"
+          placeholder="體型"
+          v-model="fishTags.body.selected"
+          :items="fishTags.body.items"
+          :menu-props="{ bottom: true, offsetY: true }"
+          @change="setFishFilterParams"
+        >
         </v-select>
       </div>
       <div class="border-box mr-2">
-        <v-select
+        <!-- <v-select
           dense
           multiple
           hide-details
@@ -81,11 +105,28 @@
               (+{{ fishTags.food.selected.length - 2 }} others)
             </span>
           </template>
+        </v-select> -->
+        <v-select
+          dense
+          hide-details
+          item-text="name"
+          item-value="value"
+          placeholder="獵食喜好"
+          v-model="fishTags.food.selected"
+          :items="fishTags.food.items"
+          :menu-props="{ bottom: true, offsetY: true }"
+          @change="setFishFilterParams"
+        >
         </v-select>
       </div>
-      <v-btn icon @click="resetFilters()" class="ml-4 primary--text">
-        <v-icon size="24">mdi-restart</v-icon></v-btn
+      <v-btn
+        text
+        @click="resetFilters()"
+        class="ml-4 primary--text"
+        :disabled="!hasFilters"
       >
+        重置
+      </v-btn>
     </div>
   </div>
 </template>
@@ -105,7 +146,7 @@ export default {
               value: 'FRESH_WATER',
             },
           ],
-          selected: [],
+          selected: '',
         },
         body: {
           items: [
@@ -122,7 +163,7 @@ export default {
               value: 'SMALL',
             },
           ],
-          selected: [],
+          selected: '',
         },
         food: {
           items: [
@@ -139,11 +180,19 @@ export default {
               value: 'HERBIVOROUS',
             },
           ],
-          selected: [],
+          selected: '',
         },
       },
       selectedFishCategories: [],
     };
+  },
+  computed: {
+    hasFilters() {
+      const selectedTags = Object.values(this.fishTags).filter(
+        (tag) => tag.selected
+      );
+      return selectedTags ? true : false;
+    },
   },
   methods: {
     emitFishFilterParams(params) {
@@ -151,15 +200,18 @@ export default {
     },
     setFishFilterParams() {
       this.selectedFishCategories = [
-        ...this.fishTags.water.selected,
-        ...this.fishTags.body.selected,
-        ...this.fishTags.food.selected,
+        this.fishTags.water.selected,
+        this.fishTags.body.selected,
+        this.fishTags.food.selected,
       ];
-      this.emitFishFilterParams(this.selectedFishCategories);
+
+      const newArray = this.selectedFishCategories.filter((tag) => tag);
+
+      this.emitFishFilterParams(newArray);
     },
     resetFilters() {
       for (const filter of Object.values(this.fishTags)) {
-        filter.selected = [];
+        filter.selected = '';
       }
       this.emitFishFilterParams([]);
     },
@@ -188,7 +240,7 @@ export default {
       align-items: center;
       border-right: 1px solid #dbdbdb;
       .v-select__selections input {
-        font-size: 14px;
+        font-size: 16px;
       }
       .v-input__slot:before {
         border: unset;
