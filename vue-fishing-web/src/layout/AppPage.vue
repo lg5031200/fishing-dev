@@ -27,5 +27,6 @@ export default {};
   overflow: scroll;
   overflow-x: hidden;
   flex-direction: column;
+  font-size: 14px;
 }
 </style>

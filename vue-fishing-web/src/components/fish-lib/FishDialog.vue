@@ -6,41 +6,36 @@
     @keydown.esc="closeDialog"
   >
     <v-card class="pa-4">
-      <div class="d-flex flex-no-wrap justify-space-between align-center">
-        <div>
+      <v-row>
+        <v-col class="d-flex flex-column align-center">
+          <v-img
+            contain
+            width="200"
+            :src="source(selectedFishData.imageSrc)"
+          ></v-img>
+        </v-col>
+        <v-col>
           <v-card-title class="text-h5">
             <span>{{ selectedFishData.zh_name }}</span>
-            <v-chip
-              v-for="(category, index) in selectedFishData.category"
-              :key="index"
-              color="#2196F3"
-              class="ml-4"
-              outlined
-              small
-              >{{ fishCategoryTempForamt[category] }}
-            </v-chip>
           </v-card-title>
+
+          <v-chip
+            v-for="(category, index) in selectedFishData.category"
+            :key="index"
+            color="#2196F3"
+            class="ml-4"
+            outlined
+            small
+            >{{ fishCategoryTempForamt[category] }}
+          </v-chip>
 
           <v-card-subtitle v-text="selectedFishData.en_name"></v-card-subtitle>
 
           <v-card-text style="line-height: 2">{{
             selectedFishData.introduction
           }}</v-card-text>
-        </div>
-
-        <div>
-          <v-img
-            contain
-            height="200"
-            width="200"
-            :src="source(selectedFishData.imageSrc)"
-          ></v-img>
-          <div class="primary--text text-center hide-text">
-            <v-icon color="primary">mdi-map-marker</v-icon
-            ><span>{{ selectedFishData.habitat }}</span>
-          </div>
-        </div>
-      </div>
+        </v-col>
+      </v-row>
     </v-card>
   </v-dialog>
 </template>

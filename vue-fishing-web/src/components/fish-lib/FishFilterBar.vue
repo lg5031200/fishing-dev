@@ -1,8 +1,7 @@
 <template>
   <div id="fish-filter">
     <div class="filter-box">
-      <!-- <h4 class="filter-title border-box mr-2">篩選器</h4> -->
-      <div class="border-box mr-4" style="border-left: 1px solid #dbdbdb;">
+      <div class="border-box mr-2" style="border-left: 1px solid #dbdbdb;">
         <!-- <v-select
           dense
           multiple
@@ -111,7 +110,7 @@
           hide-details
           item-text="name"
           item-value="value"
-          placeholder="獵食喜好"
+          placeholder="獵食"
           v-model="fishTags.food.selected"
           :items="fishTags.food.items"
           :menu-props="{ bottom: true, offsetY: true }"
@@ -122,7 +121,7 @@
       <v-btn
         text
         @click="resetFilters()"
-        class="ml-4 primary--text"
+        class="primary--text"
         :disabled="!hasFilters"
       >
         重置
@@ -191,7 +190,7 @@ export default {
       const selectedTags = Object.values(this.fishTags).filter(
         (tag) => tag.selected
       );
-      return selectedTags ? true : false;
+      return selectedTags.length > 0 ? true : false;
     },
   },
   methods: {
@@ -220,11 +219,11 @@ export default {
 </script>
 <style lang="scss">
 #fish-filter {
-  border-top: 1px solid #dbdbdb;
-  border-bottom: 1px solid #dbdbdb;
+  --black_border: 1px solid #dbdbdb;
+  border-top: var(--black_border);
+  border-bottom: var(--black_border);
   .filter-box {
     max-width: 960px;
-    min-width: 960px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -238,7 +237,7 @@ export default {
       padding: 12px;
       display: flex;
       align-items: center;
-      border-right: 1px solid #dbdbdb;
+      border-right: var(--black_border);
       .v-select__selections input {
         font-size: 16px;
       }

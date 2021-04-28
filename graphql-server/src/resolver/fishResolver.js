@@ -10,7 +10,7 @@ const resolvers = {
           param.zh_name = new RegExp(param.zh_name);
         }
         if (param.category) {
-          Object.assign(param, { category: { $in: param.category } });
+          Object.assign(param, { category: { $all: param.category } });
         }
       }
 

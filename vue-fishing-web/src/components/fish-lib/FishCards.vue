@@ -20,7 +20,7 @@
         </v-hover>
       </v-col>
     </v-row>
-    <v-row v-else class="text-center">
+    <v-row v-else class="text-center mt-4">
       <v-col>無搜尋結果</v-col>
     </v-row>
     <fish-dialog
