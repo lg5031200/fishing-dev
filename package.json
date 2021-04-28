@@ -5,6 +5,9 @@
   "repository": "https://github.com/lg5031200/fishing-dev.git",
   "author": "Polly",
   "license": "MIT",
+  "scripts": {
+    "start": "cd graphql-server && node index.js"
+  },
   "engines": {
     "yarn": "1.x"
   }
