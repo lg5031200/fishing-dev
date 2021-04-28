@@ -1,0 +1,8 @@
+{
+  "name": "fishing-dev",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lg5031200/fishing-dev.git",
+  "author": "Polly",
+  "license": "MIT"
+}
