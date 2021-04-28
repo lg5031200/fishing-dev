@@ -7,6 +7,9 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "engines": {
+    "yarn": "1.x"
+  },
   "dependencies": {
     "animate.css": "^4.1.1",
     "core-js": "^3.6.5",
