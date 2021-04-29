@@ -8,11 +8,12 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "15.x",
+    "node": "12.x",
     "yarn": "1.x"
   },
   "dependencies": {
     "apollo-server-express": "^2.22.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "mongoose": "^5.12.2",
