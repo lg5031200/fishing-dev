@@ -12,8 +12,8 @@ Vue.use(VueApollo);
 const AUTH_TOKEN = 'apollo-token';
 
 // Http endpoint
-const httpEndpoint =
-  process.env.VUE_APP_GRAPHQL_HTTP || 'https://fish-server-1.herokuapp.com/';
+const httpEndpoint = process.env.PORT ||
+  process.env.VUE_APP_GRAPHQL_HTTP || 'https://fish-server-1.herokuapp.com/graphql';
 
 // Config
 const defaultOptions = {
