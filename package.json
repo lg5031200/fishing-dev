@@ -1,12 +1,12 @@
 {
-  "name": "fishing-dev",
+  "name": "fish-web",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/lg5031200/fishing-dev.git",
-  "author": "Polly",
+  "author": "polly <lg5031200@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cd graphql-server && npm install && node index.js"
+    "start": "cd vue-fishing-web && npm install && npm start"
   },
   "engines": {
     "yarn": "1.x"
