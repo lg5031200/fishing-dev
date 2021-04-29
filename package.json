@@ -6,7 +6,7 @@
   "author": "polly <lg5031200@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "cd vue-fishing-web && npm install && npm start"
+    "start": "cd vue-fishing-web && npm start"
   },
   "engines": {
     "yarn": "1.x"
