@@ -29,3 +29,6 @@
 - 匯總台灣合法/私人釣魚地區
 - 搜尋台灣釣具店(GoogleMap)
 - 檢視潮汐與天氣
+
+## DEMO
+https://fish-demo.herokuapp.com/
